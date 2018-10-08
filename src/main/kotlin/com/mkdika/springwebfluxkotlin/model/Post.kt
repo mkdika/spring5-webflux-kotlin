@@ -8,10 +8,10 @@ import java.util.*
 data class Post(
 
         @Id
-        val id: Int,
-        val title: String,
-        val content: String,
-        val postTime: Date,
-        val Comments: List<Comment>
+        val id: Int = 0,
+        val title: String = "",
+        val content: String = "",
+        val postTime: Date = Date(),
+        val Comments: MutableList<Comment>
 
 )
