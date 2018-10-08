@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
 
-Spring 5 Webflux framework with Kotlin & Spring Boot 2 stacks. this project is consist of CRUD Web endpoint and Reactive MongoDB as storage.
+Spring 5 Kotlin REST API with Webflux DSL and Spring Boot 2 stacks. 
 
 
 ## Tech Stack
