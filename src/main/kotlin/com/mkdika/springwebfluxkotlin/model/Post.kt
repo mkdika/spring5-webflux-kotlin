@@ -11,7 +11,8 @@ data class Post(
         val id: Int = 0,
         val title: String = "",
         val content: String = "",
-        val postTime: Date = Date(),
-        val Comments: MutableList<Comment>
+        val postTime: Date = Date()
+//        ,
+//        var Comments: MutableList<Comment>
 
 )

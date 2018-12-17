@@ -12,25 +12,27 @@ import reactor.core.publisher.Mono
 @Component
 class PostHandler(private val postRepository: PostRepository) {
 
-    fun findAllPost(request: ServerRequest): Mono<ServerResponse> =
-            ServerResponse.ok()
-                    .contentType(MediaType.APPLICATION_JSON)
+    fun findAllPost(request: ServerRequest): Mono<ServerResponse> {
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
                     .body(postRepository.findAll(), Post::class.java)
-                    .switchIfEmpty(ServerResponse.noContent().build())
+                .switchIfEmpty(ServerResponse.noContent().build())
+    }
 
     fun findPostById(request: ServerRequest): Mono<ServerResponse> {
-        val postId:Int = request.pathVariable("id").toInt()
+        val postId: Int = request.pathVariable("id").toInt()
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(postRepository.findById(postId), Post::class.java)
                 .switchIfEmpty(ServerResponse.notFound().build())
     }
 
-    fun saveOrUpdatePost(request: ServerRequest): Mono<ServerResponse> =
-            request.bodyToMono(Post::class.java).flatMap {ServerResponse.ok().body(fromObject(postRepository.save(it)))}
+    fun saveOrUpdatePost(request: ServerRequest): Mono<ServerResponse> {
+        return request.bodyToMono(Post::class.java).flatMap { ServerResponse.ok().body(fromObject(postRepository.save(it))) }
+    }
 
     fun deletePostById(request: ServerRequest): Mono<ServerResponse> {
-        val postId:Int = request.pathVariable("id").toInt()
+        val postId: Int = request.pathVariable("id").toInt()
         return ServerResponse.noContent()
                 .build(postRepository.deleteById(postId))
                 .switchIfEmpty(ServerResponse.notFound().build())
